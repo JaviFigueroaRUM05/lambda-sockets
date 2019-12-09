@@ -1,0 +1,18 @@
+<start>      -> <client> | <server>
+<client>     -> <connect> <expr> <disconnect>
+<server>     -> <init> <listen> <expr>
+<expr>       -> <disconnect> <expr> | 
+                <connect> <expr> | 
+                <listen> <expr> |
+                <init> <expr> | 
+                <send> <expr> | 
+                <recieve> <expr>
+<disconnect> -> .\Disconnect
+<connect>    -> .\Connect <ip> <port>
+<listen>     -> .\Listen
+<init>       -> .\Init
+<send>       -> .\Send "<data>"
+<recieve>    -> .\Recieve
+<ip>         -> [0-9][0-9]?[0-9]?.[0-9][0-9]?[0-9]?.[0-9][0-9]?[0-9]?.[0-9][0-9]?[0-9]?
+<port>       -> [0-9][0-9]?[0-9]?[0-9]?[0-9]?
+<data>       -> [a-z|A-Z|0-9]*
