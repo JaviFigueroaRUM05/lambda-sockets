@@ -68,13 +68,17 @@ class Lexer:
     def __init__(self, data):
         self.data = data
 
-    def tokenize(self):
+    def tokenize(self):     #Returns a space delimited string of tokens
+        output = ""
         self.lexer.input(self.data)
         while True:
-         tok = self.lexer.token()
-         if not tok:
-            break  # No more input
-         print(tok.value)
+            tok = self.lexer.token()
+            if not tok:
+                break  # No more input
+            output = output + str(tok.value) +" "
+        return output
+         #print(tok.value) #--Used to test
+
 
 
 #Test the Class
@@ -85,4 +89,4 @@ test = Lexer(data = '''
         .\ Disconnect
         ''')
 
-test.tokenize()
+print(test.tokenize())
