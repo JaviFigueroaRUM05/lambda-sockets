@@ -6,13 +6,14 @@
                 <listen> <expr> |
                 <init> <expr> | 
                 <send> <expr> | 
-                <recieve> <expr>
+                <recieve> <expr> |
+                epsilon
 <disconnect> -> .\Disconnect
 <connect>    -> .\Connect <ip> <port>
 <listen>     -> .\Listen
 <init>       -> .\Init
-<send>       -> .\Send "<data>"
+<send>       -> .\Send <data>
 <recieve>    -> .\Recieve
-<ip>         -> [0-9][0-9]?[0-9]?.[0-9][0-9]?[0-9]?.[0-9][0-9]?[0-9]?.[0-9][0-9]?[0-9]?
-<port>       -> [0-9][0-9]?[0-9]?[0-9]?[0-9]?
-<data>       -> [a-z|A-Z|0-9]*
+<ip>         -> [0-255].[0-255].[0-255].[0-255]
+<port>       -> [0-65536]
+<data>       -> ".*"
