@@ -9,7 +9,7 @@ List of Commands:
 .\Connect <ip> <port> - Connects to a server in the address <ip>:<port>.
 .\Disconnect - Disconnects from the currently connected server.
 .\Send "message" - Sends a message to the current connection channel.
-.\Recieve - Waits until it recieves a massage from the connection.
+.\Receive - Waits until it receives a massage from the connection.
 
 Language Reference:
 
@@ -18,11 +18,11 @@ Client applications must conform to the following format:
 
 .\Connect <ip> <port>
 <expr>
-.\Disconect
+.\Disconnect
 
 Where expression stands for any other valid command.
 
-Server aplications must conform to the following format:
+Server applications must conform to the following format:
 
 .\Init
 .\Listen
