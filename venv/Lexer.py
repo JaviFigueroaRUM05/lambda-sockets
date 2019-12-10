@@ -1,80 +1,88 @@
+from pyclbr import Class
+
 import ply.lex as lex
 
-tokens = (
-    'LAMBDA',
-    'INITIALIZE',
-    'LISTEN',
-    'RECEIVE',
-    'SEND',
-    'CONNECT',
-    'DISCONNECT',
-    'IP',
-    'PORT',
-    'DATA',
-)
+class Lexer:
 
-# Regular expression rules for simple tokens
-t_LAMBDA = r'.\\'
-t_INITIALIZE = 'Init'
-t_LISTEN = 'Listen'
-t_RECEIVE = 'Receive'
-t_SEND = 'Send'
-t_CONNECT = 'Connect'
-t_DISCONNECT = 'Disconnect'
+    tokens = (
+        'LAMBDA',
+        'INITIALIZE',
+        'LISTEN',
+        'RECEIVE',
+        'SEND',
+        'CONNECT',
+        'DISCONNECT',
+        'IP',
+        'PORT',
+        'DATA',
+    )
+
+    # Regular expression rules for simple tokens
+    t_LAMBDA = r'.\\'
+    t_INITIALIZE = 'Init'
+    t_LISTEN = 'Listen'
+    t_RECEIVE = 'Receive'
+    t_SEND = 'Send'
+    t_CONNECT = 'Connect'
+    t_DISCONNECT = 'Disconnect'
 
 
 
-# A regular expression rule with some action code
-def t_IP(t):
-    r'(?:[0-9]{1,3}\.){3}[0-9]{1,3}'
-    t.value = (t.value)
-    return t
-
-# A regular expression rule with some action code
-def t_PORT(t):
-    r'([012344]?[0-9]?[0-9]?[0-9]?[0-9]|6[0-4][0-9][0-9][0-9]|65[0-5][0-3][0-5])'
-    t.value = int(t.value)
-    return t
+    # A regular expression rule with some action code
+    def t_IP(t):
+        r'(?:[0-9]{1,3}\.){3}[0-9]{1,3}'
+        t.value = (t.value)
+        return t
 
 # A regular expression rule with some action code
-def t_DATA(t):
-    r'".*"'
-    t.value = (t.value)
-    return t
+    def t_PORT(t):
+        r'([012344]?[0-9]?[0-9]?[0-9]?[0-9]|6[0-4][0-9][0-9][0-9]|65[0-5][0-3][0-5])'
+        t.value = int(t.value)
+        return t
 
-# Define a rule so we can track line numbers
-def t_newline(t):
-    r'\n+'
-    t.lexer.lineno += len(t.value)
+    # A regular expression rule with some action code
+    def t_DATA(t):
+        r'".*"'
+        t.value = (t.value)
+        return t
 
-
-# A string containing ignored characters (spaces and tabs)
-t_ignore = ' \t'
-
-
-# Error handling rule
-def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
-    t.lexer.skip(1)
+    # Define a rule so we can track line numbers
+    def t_newline(t):
+        r'\n+'
+        t.lexer.lineno += len(t.value)
 
 
-# Build the lexer
-lexer = lex.lex()
+    # A string containing ignored characters (spaces and tabs)
+    t_ignore = ' \t'
 
-# Test it out
-data = '''
-    .\ Connect 127.0.0.1 2468
-    .\ Send "Hola, Wenas"
-    .\ Receive
-    .\ Disconnect
- '''
 
-# Give the lexer some input
-lexer.input(data)
+    # Error handling rule
+    def t_error(t):
+        print("Illegal character '%s'" % t.value[0])
+        t.lexer.skip(1)
 
-# Tokenize
-while True:
-    tok = lexer.token()
-    if not tok:
-        break  # No more input
-    print(tok)
+
+    # Build the lexer
+    lexer = lex.lex()
+
+    def __init__(self, data):
+        self.data = data
+
+    def tokenize(self):
+        self.lexer.input(self.data)
+        while True:
+         tok = self.lexer.token()
+         if not tok:
+            break  # No more input
+         print(tok.value)
+
+
+#Test the Class
+test = Lexer(data = '''
+        .\ Connect 127.0.0.1 2468
+        .\ Send "Hola, Wenas"
+        .\ Receive
+        .\ Disconnect
+        ''')
+
+test.tokenize()
