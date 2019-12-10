@@ -1,6 +1,6 @@
 Lambda Sockets is a programming language intended to be used as a tool for
 creating connections between client-server applications. It also allows for 
-some rudimentary comunication between them.
+some rudimentary communication between them.
 
 List of Commands:
 
