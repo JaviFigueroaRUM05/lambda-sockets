@@ -36,7 +36,7 @@ class Lexer:
 
 # A regular expression rule with some action code
     def t_PORT(t):
-        r'([012344]?[0-9]?[0-9]?[0-9]?[0-9]|6[0-4][0-9][0-9][0-9]|65[0-5][0-3][0-5])'
+        r'([012345]?[0-9]?[0-9]?[0-9]?[0-9]|6[0-4][0-9][0-9][0-9]|65[0-5][0-3][0-5])'
         t.value = int(t.value)
         return t
 
