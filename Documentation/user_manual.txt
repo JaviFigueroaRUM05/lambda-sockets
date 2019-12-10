@@ -1,0 +1,32 @@
+Lambda Sockets is a programming language intended to be used as a tool for
+creating connections between client-server applications. It also allows for 
+some rudimentary comunication between them.
+
+List of Commands:
+
+.\Init - Creates a server in the local host 127.0.0.1 in port 12345.
+.\Listen - Waits for a connection from a client to be recieved.
+.\Connect <ip> <port> - Connects to a server in the address <ip>:<port>.
+.\Disconnect - Disconnects from the currently connected server.
+.\Send "message" - Sends a message to the current connection channel.
+.\Recieve - Waits until it recieves a massage from the connection.
+
+Language Reference:
+
+The language only supports two kinds of applications, a client or a server.
+Client applications must conform to the following format:
+
+.\Connect <ip> <port>
+<expr>
+.\Disconect
+
+Where expression stands for any other valid command.
+
+Server aplications must conform to the following format:
+
+.\Init
+.\Listen
+<expr>
+
+Where expression stands for any other valid command.
+
