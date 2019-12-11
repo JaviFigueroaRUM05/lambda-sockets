@@ -82,11 +82,11 @@ class Lexer:
 
 
 #Test the Class
-test = Lexer(data = '''
-        .\ Connect 127.0.0.1 2468
-        .\ Send "Hola, Wenas"
-        .\ Receive
-        .\ Disconnect
-        ''')
+#test = Lexer(data = '''
+        #.\ Connect 127.0.0.1 2468
+        #.\ Send "Hola, Wenas"
+        #.\ Receive
+        #.\ Disconnect
+        #''')
 
-print(test.tokenize())
+#print(test.tokenize())
